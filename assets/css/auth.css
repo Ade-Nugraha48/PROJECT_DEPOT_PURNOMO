@@ -1,0 +1,61 @@
+/* auth.css - blue/white modern theme for authentication pages */
+
+body {
+    background-color: #f0f4f8;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.auth-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-card h2 {
+    margin-bottom: 1rem;
+    color: #0056b3;
+    text-align: center;
+}
+
+.auth-card .form-control {
+    margin-bottom: 1rem;
+}
+
+.auth-card .btn-primary {
+    width: 100%;
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.auth-card .btn-primary:hover {
+    background-color: #004494;
+    border-color: #004494;
+}
+
+.auth-card a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.auth-card a:hover {
+    text-decoration: underline;
+}
+
+/* logo inside auth cards */
+.auth-card .logo {
+    display: block;
+    margin: 0 auto 1rem;
+    max-width: 150px;
+}
