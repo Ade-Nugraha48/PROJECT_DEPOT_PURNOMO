@@ -6,6 +6,7 @@
     <title>Login</title>
     <!-- gunakan Bootstrap dan stylesheet khusus auth -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/css/dark-mode.css" rel="stylesheet">
     <link href="../../assets/css/auth.css" rel="stylesheet">
 </head>
 <body>
@@ -26,6 +27,7 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/dark-mode.js"></script>
 <footer class="text-center mt-4">
     <img src="../../assets/images/logo_depot_purnomo.png" alt="Depot Purnomo" height="50">
 </footer>

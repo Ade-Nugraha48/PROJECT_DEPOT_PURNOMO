@@ -35,6 +35,7 @@ $total_transaksi = hitung_jumlah_transaksi(
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laporan Owner</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/css/dark-mode.css" rel="stylesheet">
     <link href="../../assets/css/owner.css" rel="stylesheet">
 </head>
 <body>
@@ -65,5 +66,6 @@ $total_transaksi = hitung_jumlah_transaksi(
     <h3>Total Keuntungan : <?php echo $total_keuntungan; ?></h3>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/dark-mode.js"></script>
 </body>
 </html>
