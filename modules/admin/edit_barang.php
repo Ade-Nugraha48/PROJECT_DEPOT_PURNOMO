@@ -1,7 +1,7 @@
 <?php
 // halaman form edit barang. id dikirim via query string
-require_once "../../includes/auth_middleware.php";
-require_once "../../config/database.php";
+require_once __DIR__ . "/../../includes/auth_middleware.php";
+require_once __DIR__ . "/../../config/database.php";
 
 if (!isset($_GET['id'])) {
     // jika tidak ada id, kembali ke daftar
@@ -33,7 +33,10 @@ if (!$barang) {
 <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="manajemen_stok.php"><img src="../../assets/images/navbar_logo.png" alt="Depot Purnomo" height="30" class="d-inline-block align-text-top"> Depot Purnomo</a>
-        <div class="collapse navbar-collapse">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="manajemen_stok.php">Stok</a></li>
                 <li class="nav-item"><a class="nav-link" href="../auth/logout.php">Logout</a></li>

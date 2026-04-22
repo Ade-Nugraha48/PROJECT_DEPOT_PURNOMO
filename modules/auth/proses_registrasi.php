@@ -1,7 +1,7 @@
 <?php
 // skrip pendaftaran akun baru pelanggan
-require_once "../../config/database.php";
-require_once "../../functions/validasi_helper.php";
+require_once __DIR__ . "/../../config/database.php";
+require_once __DIR__ . "/../../functions/validasi_helper.php";
 
 // bersihkan input untuk menghindari XSS dan whitespace
 $username = bersihkan_input($_POST['username']);

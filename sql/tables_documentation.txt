@@ -1,0 +1,118 @@
+Dokumentasi Tabel - galon_depot_purnomo
+
+Ringkasan:
+File ini menjelaskan kegunaan, kolom penting, kunci primer, dan relasi dari setiap tabel pada database `galon_depot_purnomo`.
+
+1) `audit_log`
+- Kegunaan: Menyimpan catatan aktivitas pengguna (log) untuk keperluan audit dan pelacakan tindakan.
+- Kunci Primer: `id_log` (INT, AUTO_INCREMENT)
+- Kolom penting:
+  - `id_user`: ID pengguna yang melakukan aktivitas (relasi ke `users.id_user`).
+  - `aktivitas`: deskripsi singkat aktivitas (mis. "login ke sistem").
+  - `waktu`: cap waktu aktivitas tercatat.
+- Relasi: opsional mengacu ke tabel `users`.
+- Catatan: Berguna untuk debugging, riwayat login, atau bukti audit.
+
+2) `barang`
+- Kegunaan: Menyimpan data produk/jenis galon yang dijual atau diisi ulang.
+- Kunci Primer: `id_barang` (INT, AUTO_INCREMENT)
+- Kolom penting:
+  - `nama_barang`: nama produk.
+  - `harga_barang`: harga satuan dalam satuan mata uang lokal (integer).
+  - `stok_barang`: jumlah stok tersedia.
+  - `gambar`: nama file gambar produk (opsional).
+- Relasi: direferensikan oleh `detail_pesanan` dan `log_stok`.
+- Catatan: Pastikan `stok_barang` selaras dengan catatan pada `log_stok`.
+
+3) `detail_pesanan`
+- Kegunaan: Menyimpan baris item untuk setiap pesanan (item per pesanan).
+- Kunci Primer: `id_detail` (INT, AUTO_INCREMENT)
+- Kolom penting:
+  - `id_pesanan`: referensi ke `pesanan.id_pesanan`.
+  - `id_barang`: referensi ke `barang.id_barang`.
+  - `jumlah`: jumlah unit produk pada baris ini.
+  - `harga_satuan`: harga per unit pada saat pemesanan.
+- Relasi: FK ke `pesanan` (id_pesanan) dan `barang` (id_barang).
+- Catatan: Total untuk pesanan dapat dihitung dari jumlah * harga_satuan per baris.
+
+4) `log_stok`
+- Kegunaan: Mencatat perubahan stok barang (riwayat penambahan/pengurangan).
+- Kunci Primer: `id_log_stok` (INT, AUTO_INCREMENT)
+- Kolom penting:
+  - `id_barang`: referensi ke `barang.id_barang`.
+  - `perubahan_stok`: nilai perubahan (positif untuk penambahan, negatif untuk pengurangan jika dicatat demikian).
+  - `tipe_perubahan`: enum('penambahan','pengurangan') untuk jenis perubahan.
+  - `keterangan`: penjelasan alasan perubahan (mis. "penjualan", "pengembalian", "penyesuaian").
+  - `tanggal_log`: waktu perubahan tercatat.
+- Relasi: FK ke `barang` (id_barang).
+- Catatan: Gunakan untuk audit stok dan sinkronisasi inventori.
+
+5) `pembayaran`
+- Kegunaan: Menyimpan informasi pembayaran yang terkait dengan pesanan.
+- Kunci Primer: `id_pembayaran` (INT, AUTO_INCREMENT)
+- Kolom penting:
+  - `id_pesanan`: referensi ke `pesanan.id_pesanan`.
+  - `metode_pembayaran`: teks metode (mis. transfer, cash, e-wallet).
+  - `status_pembayaran`: enum('pending','berhasil','gagal').
+  - `waktu_pembayaran`: cap waktu saat pembayaran dilakukan/tercatat.
+- Relasi: FK ke `pesanan`.
+- Catatan: Status 'berhasil' biasanya menjadi syarat agar admin mengubah status pesanan menjadi diproses.
+
+6) `pengiriman`
+- Kegunaan: Menyimpan data pengiriman untuk setiap pesanan termasuk status dan kurir yang menangani.
+- Kunci Primer: `id_pengiriman` (INT, AUTO_INCREMENT)
+- Kolom penting:
+  - `id_pesanan`: referensi ke `pesanan.id_pesanan`.
+  - `id_kurir`: referensi ke `users.id_user` untuk user yang berperan kurir.
+  - `status_pengiriman`: enum('menunggu_kurir','dalam_pengiriman','selesai').
+  - `waktu_mulai` dan `waktu_selesai`: timestamp perjalanan kirim.
+- Relasi: FK ke `pesanan` dan `users` (kurir).
+- Catatan: Digunakan untuk melacak proses pengantaran dan alokasi tugas kurir.
+
+7) `pesanan`
+- Kegunaan: Menyimpan entitas pesanan yang dibuat pelanggan.
+- Kunci Primer: `id_pesanan` (INT, AUTO_INCREMENT)
+- Kolom penting:
+  - `id_user`: referensi ke `users.id_user` (pelanggan yang memesan).
+  - `tanggal_pesanan`: waktu pemesanan dibuat.
+  - `status_pesanan`: enum('menunggu_pembayaran','sedang_proses','selesai','ditolak').
+  - `alamat_lengkap`, `latitude`, `longitude`: data alamat dan koordinat tujuan pengiriman.
+- Relasi: FK ke `users` (pemesan). Direferensikan oleh `detail_pesanan`, `pembayaran`, `pengiriman`, `transaksi`.
+- Catatan: Status berubah mengikuti alur pembayaran dan pengiriman.
+
+8) `roles`
+- Kegunaan: Menyimpan daftar peran (role) dalam aplikasi (contoh: admin, pelanggan, kurir, owner).
+- Kunci Primer: `id_role` (INT, AUTO_INCREMENT)
+- Kolom penting:
+  - `nama_role`: nama peran.
+- Relasi: Direferensikan oleh `users.id_role`.
+- Catatan: Tambahkan role baru jika menambah jenis pengguna baru.
+
+9) `transaksi`
+- Kegunaan: Menyimpan ringkasan transaksi pembayaran yang berhubungan dengan pesanan (rekap harga total).
+- Kunci Primer: `id_transaksi` (INT, AUTO_INCREMENT)
+- Kolom penting:
+  - `id_pesanan`: referensi ke `pesanan.id_pesanan`.
+  - `total_harga`: jumlah total transaksi.
+  - `tanggal_transaksi`: waktu transaksi dicatat.
+- Relasi: FK ke `pesanan`.
+- Catatan: Bisa digunakan untuk laporan keuangan dan rekonsiliasi pembayaran.
+
+10) `users`
+- Kegunaan: Menyimpan data pengguna sistem (admin, pelanggan, kurir, owner).
+- Kunci Primer: `id_user` (INT, AUTO_INCREMENT)
+- Kolom penting:
+  - `username`: nama atau identitas login (UNIQUE).
+  - `password`: password (harus disimpan terenkripsi/hashing pada implementasi asli).
+  - `no_telp`: nomor telepon.
+  - `id_role`: referensi ke `roles.id_role`.
+  - `dibuat_pada`: waktu akun dibuat.
+- Relasi: Direferensikan oleh `pesanan` (id_user), `pengiriman` (id_kurir), `audit_log`, dll.
+- Catatan: Pastikan password disimpan dengan hashing yang aman; jangan menyimpan password plaintext.
+
+Tips Integrasi & Penggunaan:
+- Gunakan transaksi database (BEGIN/COMMIT/ROLLBACK) saat membuat pesanan yang mempengaruhi banyak tabel (pesanan, detail_pesanan, transaksi, log_stok) agar konsistensi data terjaga.
+- Selalu periksa FK dan gunakan indeks pada kolom yang sering dicari untuk performa.
+- Simpan bukti pembayaran dan log operasi pada tabel yang sesuai untuk audit.
+
+Dokumentasi dibuat otomatis berdasarkan struktur `galon_depot_purnomo` (file sql dump). Perbarui dokumentasi ini bila struktur tabel berubah.

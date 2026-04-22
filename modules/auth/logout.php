@@ -1,5 +1,5 @@
 <?php
-require_once '../../functions/auth_helper.php';
+require_once __DIR__ . '/../../functions/auth_helper.php';
 logout_user();
 
 if (!headers_sent()) {

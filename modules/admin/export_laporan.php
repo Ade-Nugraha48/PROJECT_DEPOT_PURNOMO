@@ -1,7 +1,7 @@
 <?php
 
-require_once "../../config/database.php";
-require_once "../../functions/laporan_helper.php";
+require_once __DIR__ . "/../../config/database.php";
+require_once __DIR__ . "/../../functions/laporan_helper.php";
 
 $tanggal_mulai = $_GET['tanggal_mulai'];
 $tanggal_selesai = $_GET['tanggal_selesai'];

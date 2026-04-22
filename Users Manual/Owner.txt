@@ -1,0 +1,31 @@
+Owner — Manual Pengguna
+
+Tujuan:
+- Menjelaskan fitur yang diakses oleh pemilik (Owner): melihat laporan, analitik penjualan, dan ringkasan performa usaha.
+
+Hak Akses Owner:
+- Akses ke dashboard owner dan laporan komprehensif (laporan_owner.php).
+
+Alur Utama Modul Owner:
+1. Dashboard Owner (modules/owner/dashboard_owner.php): ringkasan penjualan, tren, dan metrik utama.
+2. Laporan Owner (modules/owner/laporan_owner.php): laporan penjualan detail, filter per periode, dan unduh laporan.
+
+Cara Menggunakan (Langkah demi langkah):
+- Melihat Ringkasan Penjualan:
+	1. Login sebagai Owner.
+	2. Akses Dashboard Owner untuk melihat grafik dan KPI.
+- Menghasilkan Laporan:
+	1. Masuk ke menu Laporan Owner.
+	2. Pilih rentang tanggal dan kriteria filter (mis. produk, kategori).
+	3. Klik "Tampilkan" untuk melihat hasil, atau "Ekspor" untuk unduh.
+
+Analisis dan Rekomendasi Penggunaan:
+- Pantau tren mingguan/bulanan untuk mengatur promosi atau stok.
+- Gunakan data laporan untuk keputusan pembelian dan manajemen inventori.
+
+Catatan Keamanan:
+- Data laporan sensitif; hanya berikan akses kepada pihak yang berwenang.
+
+Troubleshooting Umum:
+- Laporan tidak lengkap: periksa rentang tanggal dan apakah data transaksi sudah diproses oleh admin.
+

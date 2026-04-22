@@ -1,0 +1,53 @@
+Admin — Manual Pengguna
+
+Tujuan:
+- Menjelaskan fitur-fitur yang tersedia untuk peran Admin, alur kerja, dan cara mengelola data barang, pesanan, laporan, dan stok.
+
+Hak Akses Admin:
+- Melihat dashboard admin, menambah/ubah/hapus barang, memproses pesanan, mengelola stok, melihat laporan penjualan, dan membersihkan data.
+
+Alur Utama Modul Admin:
+1. Dashboard Admin (modules/admin/dashboard_admin.php): ringkasan statistik (total pesanan, pendapatan, stok kritis).
+2. Manajemen Barang (tambah_barang.php, edit_barang.php, proses_tambah_barang.php, proses_edit_barang.php, hapus_barang.php): alur tambah → validasi → simpan; alur edit → validasi → update; hapus dengan konfirmasi.
+3. Manajemen Stok (manajemen_stok.php, update_stok.php): cek stok, ubah jumlah stok secara manual atau impor jika tersedia.
+4. Daftar Pesanan & Validasi (daftar_pesanan.php, validasi_pesanan.php, monitoring_transaksi.php): lihat pesanan masuk, validasi pembayaran, ubah status pesanan.
+5. Laporan & Ekspor (laporan_penjualan.php, export_laporan.php): filter berdasarkan tanggal, ekspor CSV atau Excel untuk arsip.
+6. Clear Data (clear_data.php): operasi pembersihan data (gunakan dengan hati-hati dan backup sebelum menjalankan).
+
+Cara Menggunakan (Langkah demi langkah):
+- Melihat Dashboard:
+	1. Login sebagai Admin.
+	2. Akses menu Dashboard Admin. Periksa kartu ringkasan dan notifikasi.
+- Menambah Barang:
+	1. Masuk ke menu "Tambah Barang".
+	2. Isi nama barang, kategori, harga, deskripsi, stok awal, dan unggah gambar.
+	3. Tekan "Simpan". Periksa pesan sukses atau error.
+- Mengedit atau Menghapus Barang:
+	1. Buka daftar barang di menu manajemen barang.
+	2. Pilih barang lalu klik "Edit" atau "Hapus".
+	3. Untuk hapus, konfirmasi dialog untuk mencegah penghapusan tidak sengaja.
+- Mengelola Stok:
+	1. Buka halaman manajemen stok.
+	2. Cari barang yang stoknya ingin diubah.
+	3. Masukkan jumlah penyesuaian dan simpan.
+- Memproses Pesanan:
+	1. Buka daftar pesanan.
+	2. Pilih pesanan untuk melihat detail, bukti pembayaran, dan alamat pengiriman.
+	3. Ubah status (validasi, proses, dikirim, selesai) sesuai bukti.
+- Menghasilkan Laporan:
+	1. Buka menu laporan penjualan.
+	2. Pilih rentang tanggal, filter jika perlu, lalu klik "Filter".
+	3. Klik "Ekspor" untuk mengunduh file laporan.
+
+Praktik Keamanan & Operasional:
+- Backup: sebelum menjalankan `clear_data.php`, pastikan backup database terbaru.
+- Validasi manual: selalu cek bukti pembayaran untuk transaksi besar.
+- Audit: gunakan laporan dan monitoring transaksi untuk audit bulanan.
+
+Troubleshooting Umum:
+- Data tidak tersimpan: periksa pesan error validasi dan koneksi database.
+- Ekspor laporan gagal: periksa batas memori dan hak akses filesystem.
+
+Catatan Akhir:
+- Gunakan hak admin secara bertanggung jawab. Untuk perubahan besar struktur data, koordinasikan dengan tim IT.
+

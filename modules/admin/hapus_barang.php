@@ -1,6 +1,6 @@
 <?php
 // skrip untuk menghapus barang dari database (dipanggil via POST)
-require_once "../../config/database.php";
+require_once __DIR__ . "/../../config/database.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = intval($_POST['id_barang']);

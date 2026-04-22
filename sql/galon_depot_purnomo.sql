@@ -134,7 +134,10 @@ CREATE TABLE `pesanan` (
   `id_pesanan` int(11) NOT NULL,
   `id_user` int(11) DEFAULT NULL,
   `tanggal_pesanan` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status_pesanan` enum('menunggu_pembayaran','sedang_proses','selesai','ditolak') DEFAULT NULL
+  `status_pesanan` enum('menunggu_pembayaran','sedang_proses','selesai','ditolak') DEFAULT NULL,
+  `alamat_lengkap` text DEFAULT NULL,
+  `latitude` decimal(10,8) DEFAULT NULL,
+  `longitude` decimal(11,8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

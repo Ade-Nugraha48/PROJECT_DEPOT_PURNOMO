@@ -1,0 +1,48 @@
+Auth — Manual Pengguna
+
+Tujuan:
+- Menjelaskan alur autentikasi (registrasi, login, logout) untuk pengguna sistem.
+
+Peran yang terlibat:
+- Pengguna baru: mendaftar akun.
+- Pengguna terdaftar: masuk (login) untuk mengakses modul sesuai peran (Admin, Owner, Kurir, Pelanggan).
+
+Alur Sistem (ringkasan):
+1. Registrasi: pengguna mengisi formulir registrasi pada modul registrasi.php (nama, email/username, password, peran jika diperlukan). Sistem memvalidasi input dan menyimpan data ke database.
+2. Verifikasi dan keamanan: validasi format email/password dan pemeriksaan duplikat. Sistem menampilkan pesan kesalahan bila input tidak valid.
+3. Login: pengguna memasukkan kredensial pada login.php. Sistem memverifikasi data terhadap database dan membuat sesi (session) untuk pengguna.
+4. Akses: setelah login, middleware (auth_middleware.php) memeriksa peran dan mengarahkan pengguna ke dashboard yang sesuai.
+5. Logout: pengguna menutup sesi melalui logout.php, menghapus session, dan diarahkan ke halaman login.
+
+Cara Menggunakan (Langkah demi langkah):
+- Registrasi:
+	1. Buka halaman Registrasi (modules/auth/registrasi.php).
+	2. Isi semua kolom required (nama, email/username, password, konfirmasi password, data tambahan jika diminta).
+	3. Tekan tombol "Daftar". Jika ada error, perbaiki sesuai pesan validasi.
+	4. Setelah berhasil, Anda akan diarahkan ke halaman login atau notifikasi sukses.
+- Login:
+	1. Buka halaman Login (modules/auth/login.php).
+	2. Masukkan email/username dan password.
+	3. Tekan tombol "Login".
+	4. Jika kredensial benar, Anda akan diarahkan ke dashboard sesuai peran (Admin/Owner/Kurir/Pelanggan).
+	5. Jika kredensial salah, sistem menampilkan pesan kesalahan.
+- Logout:
+	1. Klik tombol atau link "Logout" pada header atau menu profil.
+	2. Sistem akan menghapus session dan mengarahkan kembali ke halaman login.
+
+Catatan Penting dan Validasi:
+- Password: gunakan kombinasi kuat—panjang minimum sesuai aturan sistem.
+- Email/username: tidak boleh duplikat; sistem menolak pendaftaran jika sudah ada pada database.
+- Session: jangan membagikan kredensial; logout saat menggunakan perangkat publik.
+- Error handling: periksa pesan validasi ketika pendaftaran atau login gagal.
+
+Troubleshooting Umum:
+- Lupa password: jika fitur reset tidak tersedia, hubungi admin untuk reset manual.
+- Tidak bisa login setelah registrasi: periksa apakah pendaftaran benar-benar berhasil atau ada validasi yang tertinggal.
+
+Kontak Bantuan:
+- Hubungi administrator sistem jika menemukan masalah autentikasi yang tidak dapat diatasi oleh pengguna.
+
+Versi dan Riwayat:
+- Dokumen ini dibuat sebagai panduan pengguna untuk modul autentikasi.
+

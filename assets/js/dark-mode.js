@@ -42,15 +42,18 @@
     }
 
     function attachToggleButton() {
-        const navList = document.querySelector('.navbar-custom .navbar-nav');
+        // Prefer unified site navbar, fallback to legacy navbar
+        const navList = document.querySelector('.site-navbar .nav-links') || document.querySelector('.navbar-custom .navbar-nav');
         const authCard = document.querySelector('.auth-card');
         const button = createToggleButton(Boolean(navList));
 
         if (navList) {
-            const listItem = document.createElement('li');
-            listItem.className = 'nav-item';
-            listItem.appendChild(button);
-            navList.appendChild(listItem);
+            // site-navbar uses anchors directly; append button as an anchor-styled element
+            const wrapper = document.createElement('div');
+            wrapper.className = 'nav-item';
+            wrapper.style.display = 'inline-flex';
+            wrapper.appendChild(button);
+            navList.appendChild(wrapper);
             return;
         }
 

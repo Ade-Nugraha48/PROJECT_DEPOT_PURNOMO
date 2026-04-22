@@ -1,7 +1,7 @@
 <?php
 // skrip ini menangani proses login: memeriksa username/password
-require_once "../../config/database.php";
-require_once "../../functions/auth_helper.php";
+require_once __DIR__ . "/../../config/database.php";
+require_once __DIR__ . "/../../functions/auth_helper.php";
 
 // ambil masukan dan bersihkan username
 $username = mysqli_real_escape_string($koneksi, $_POST['username']);
@@ -37,7 +37,7 @@ if ($loginSuccess) {
     // buat sesi dan catat aktivitas
     login_user($user);
 
-    require_once "../../functions/transaksi_helper.php";
+    require_once __DIR__ . "/../../functions/transaksi_helper.php";
     catat_log($koneksi, $user['id_user'], "login ke sistem");
 
     // kirim ke dashboard sesuai peran

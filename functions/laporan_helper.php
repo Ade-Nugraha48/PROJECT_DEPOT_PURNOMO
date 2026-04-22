@@ -3,21 +3,24 @@
 function ambil_laporan_penjualan($koneksi, $tanggal_mulai, $tanggal_selesai)
 {
 
-$query = "SELECT 
+$query = "SELECT
 transaksi.id_transaksi,
 transaksi.total_harga,
-transaksi.tanggal_transaksi,
+pengiriman.waktu_selesai as tanggal_selesai,
 pesanan.id_pesanan,
 users.username
 
 FROM transaksi
 JOIN pesanan ON transaksi.id_pesanan = pesanan.id_pesanan
+JOIN pengiriman ON pesanan.id_pesanan = pengiriman.id_pesanan
 JOIN users ON pesanan.id_user = users.id_user
 
-WHERE DATE(transaksi.tanggal_transaksi) 
+WHERE DATE(pengiriman.waktu_selesai)
 BETWEEN '$tanggal_mulai' AND '$tanggal_selesai'
+AND pesanan.status_pesanan = 'selesai'
+AND pengiriman.status_pengiriman = 'selesai'
 
-ORDER BY transaksi.tanggal_transaksi DESC";
+ORDER BY pengiriman.waktu_selesai DESC";
 
 $result = mysqli_query($koneksi,$query);
 
@@ -36,9 +39,11 @@ BETWEEN '$tanggal_mulai' AND '$tanggal_selesai'";
 
 $result = mysqli_query($koneksi,$query);
 
-$data = mysqli_fetch_assoc($result);
-
-return $data['total_penjualan'];
+if ($result && $data = mysqli_fetch_assoc($result)) {
+    return $data['total_penjualan'] ?? 0;
+} else {
+    return 0;
+}
 
 }
 

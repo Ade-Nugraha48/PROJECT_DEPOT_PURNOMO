@@ -1,7 +1,7 @@
 <?php
 
-require_once "../../config/database.php";
-require_once "../../functions/stok_helper.php";
+require_once __DIR__ . "/../../config/database.php";
+require_once __DIR__ . "/../../functions/stok_helper.php";
 
 $id_pesanan = intval($_GET['id_pesanan'] ?? 0);
 
@@ -29,4 +29,4 @@ $query = "UPDATE pesanan SET status_pesanan='ditolak' WHERE id_pesanan='$id_pesa
 mysqli_query($koneksi, $query);
 
 // redirect kembali ke daftar
-header("Location: daftar_pesanan.php");
+header("Location: daftar_pesanan.php?rejected=1");

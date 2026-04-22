@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once "../../includes/auth_middleware.php";
-require_once "../../config/database.php";
+require_once __DIR__ . "/../../includes/auth_middleware.php";
+require_once __DIR__ . "/../../config/database.php";
 
 // pastikan data dikirim via POST
 $id_barang = intval($_POST['id_barang'] ?? 0);

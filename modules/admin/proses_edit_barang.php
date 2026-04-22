@@ -1,6 +1,6 @@
 <?php
 // skrip untuk memproses perubahan data barang
-require_once "../../config/database.php";
+require_once __DIR__ . "/../../config/database.php";
 
 $id = intval($_POST['id_barang']);
 $nama = mysqli_real_escape_string($koneksi, $_POST['nama_barang']);

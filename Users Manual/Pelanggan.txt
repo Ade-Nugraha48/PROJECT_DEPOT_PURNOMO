@@ -1,0 +1,47 @@
+Pelanggan — Manual Pengguna
+
+Tujuan:
+- Panduan lengkap bagi pelanggan untuk mencari barang, menambah ke keranjang, melakukan checkout, dan melacak pesanan.
+
+Fitur Utama untuk Pelanggan:
+- Daftar barang, detail barang, keranjang belanja (cart.php), checkout (checkout.php), proses pesanan (proses_pesanan.php), riwayat dan status pesanan (status_pesanan.php).
+
+Alur Pemesanan (ringkasan):
+1. Jelajahi daftar barang (modules/pelanggan/daftar_barang.php) dan buka halaman detail produk.
+2. Tambah barang ke keranjang (tambah_keranjang.php) dengan memilih jumlah.
+3. Lihat keranjang (cart.php), periksa item dan jumlah, lalu lanjutkan ke checkout.
+4. Checkout (checkout.php): isi alamat pengiriman, metode pembayaran, dan konfirmasi pesanan.
+5. Proses Pembayaran (proses_pembayaran.php): unggah bukti atau ikuti instruksi pembayaran.
+6. Setelah pembayaran dikonfirmasi oleh admin, pesanan diproses dan pelanggan dapat memantau status (status_pesanan.php).
+
+Cara Menggunakan (Langkah demi langkah):
+- Mencari dan Memilih Barang:
+	1. Buka menu "Daftar Barang".
+	2. Gunakan fitur pencarian atau filter kategori jika tersedia.
+	3. Klik produk untuk melihat detail lengkap.
+- Menambah ke Keranjang:
+	1. Pada halaman detail produk, masukkan jumlah dan klik "Tambah ke Keranjang".
+	2. Pesan akan masuk ke `cart.php`.
+- Checkout:
+	1. Dari keranjang, klik "Checkout".
+	2. Isi data alamat pengiriman dan pilih metode pembayaran.
+	3. Konfirmasi pesanan. Sistem akan menampilkan instruksi pembayaran jika diperlukan.
+- Mengunggah Bukti Pembayaran:
+	1. Jika metode transfer manual, unggah bukti pembayaran di halaman yang ditentukan.
+	2. Tunggu konfirmasi dari admin.
+- Melacak Pesanan:
+	1. Buka menu "Status Pesanan" untuk melihat status terkini.
+	2. Riwayat pesanan dapat dilihat di halaman riwayat/daftar pesanan.
+
+Tips untuk Pelanggan:
+- Periksa detail alamat dengan teliti untuk menghindari kesalahan pengiriman.
+- Simpan bukti pembayaran hingga pesanan selesai.
+- Hubungi layanan pelanggan jika ada masalah pada pesanan.
+
+Troubleshooting Umum:
+- Pesanan tidak muncul di status: periksa apakah pembayaran sudah dikonfirmasi.
+- Error saat checkout: cek koneksi, isi form wajib, dan pastikan stok tersedia.
+
+Kontak Bantuan:
+- Untuk masalah pesanan, hubungi admin melalui kontak yang tersedia di aplikasi.
+

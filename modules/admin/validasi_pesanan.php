@@ -1,7 +1,7 @@
 <?php
 
-require_once "../../config/database.php";
-require_once "../../functions/stok_helper.php";
+require_once __DIR__ . "/../../config/database.php";
+require_once __DIR__ . "/../../functions/stok_helper.php";
 
 $id_pesanan = $_GET['id_pesanan'];
 
@@ -24,8 +24,22 @@ WHERE id_pesanan='$id_pesanan'";
 
 mysqli_query($koneksi, $query_update);
 
-echo "pesanan berhasil divalidasi";
-
-require_once "../../functions/pengiriman_helper.php";
+require_once __DIR__ . "/../../functions/pengiriman_helper.php";
 
 buat_pengiriman($koneksi, $id_pesanan);
+
+// Catat transaksi ketika admin validasi (asumsi pembayaran sudah berhasil)
+require_once __DIR__ . "/../../functions/transaksi_helper.php";
+
+// Cek apakah transaksi sudah ada untuk id_pesanan ini
+$query_check = "SELECT id_transaksi FROM transaksi WHERE id_pesanan='$id_pesanan'";
+$result_check = mysqli_query($koneksi, $query_check);
+
+if (mysqli_num_rows($result_check) == 0) {
+    // Catat transaksi hanya jika belum ada
+    catat_transaksi($koneksi, $id_pesanan);
+}
+
+// Redirect kembali ke daftar pesanan dengan pesan sukses
+header("Location: daftar_pesanan.php?success=1");
+exit;

@@ -1,7 +1,7 @@
 <?php
 // skrip yang dijalankan saat pelanggan memesan barang
-require_once "../../config/database.php";
-require_once "../../functions/pesanan_helper.php";
+require_once __DIR__ . "/../../config/database.php";
+require_once __DIR__ . "/../../functions/pesanan_helper.php";
 
 session_start();
 
@@ -25,8 +25,12 @@ mysqli_begin_transaction($koneksi);
 
 try {
     // buat entri pesanan utama
-    $query_pesanan = "INSERT INTO pesanan (id_user, status_pesanan)
-    VALUES ('$id_user','menunggu_pembayaran')";
+    $alamat_lengkap = mysqli_real_escape_string($koneksi, $_POST['alamat_lengkap']);
+    $latitude = isset($_POST['latitude']) && !empty($_POST['latitude']) ? mysqli_real_escape_string($koneksi, $_POST['latitude']) : null;
+    $longitude = isset($_POST['longitude']) && !empty($_POST['longitude']) ? mysqli_real_escape_string($koneksi, $_POST['longitude']) : null;
+    
+    $query_pesanan = "INSERT INTO pesanan (id_user, status_pesanan, alamat_lengkap, latitude, longitude)
+    VALUES ('$id_user','menunggu_pembayaran', '$alamat_lengkap', " . ($latitude ? "'$latitude'" : "NULL") . ", " . ($longitude ? "'$longitude'" : "NULL") . ")";
     mysqli_query($koneksi, $query_pesanan);
 
     $id_pesanan = mysqli_insert_id($koneksi);

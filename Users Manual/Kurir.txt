@@ -1,0 +1,43 @@
+Kurir — Manual Pengguna
+
+Tujuan:
+- Menjelaskan alur kerja kurir: melihat daftar pengiriman, menerima pengiriman, memperbarui status, dan verifikasi penyelesaian.
+
+Hak Akses Kurir:
+- Melihat daftar tugas pengiriman, mengakses detail pesanan, memperbarui status pengiriman, dan mengunggah bukti kirim/selesai.
+
+Alur Utama Modul Kurir:
+1. Daftar Pengiriman (kurir/daftar_pengiriman.php): menampilkan pesanan yang ditugaskan.
+2. Detail Pengiriman (kurir/detail_pesanan.php): detail alamat, item, dan instruksi pengiriman.
+3. Terima Pengiriman (kurir/terima_pengiriman.php): kurir mengonfirmasi penerimaan tugas.
+4. Update Status (kurir/update_status_pengiriman.php): memperbarui status (dalam perjalanan, tiba, gagal, selesai).
+5. Verifikasi Selesai (kurir/verifikasi_selelsai.php): mengunggah bukti tanda terima atau foto sebagai konfirmasi.
+6. History Pengiriman (kurir/history_pengiriman.php): riwayat tugas yang telah diselesaikan.
+
+Cara Menggunakan (Langkah demi langkah):
+- Melihat Tugas Pengiriman:
+	1. Login sebagai Kurir.
+	2. Buka menu "Daftar Pengiriman" untuk melihat tugas aktif.
+- Menerima Tugas:
+	1. Pada daftar tugas, klik "Terima" atau buka detail pesanan dan klik "Terima Pengiriman".
+	2. Setelah terima, pesanan masuk ke daftar tugas Anda.
+- Memperbarui Status Pengiriman:
+	1. Di halaman detail pengiriman, pilih status yang sesuai (mis. Dalam Perjalanan, Tiba, Gagal, Selesai).
+	2. Jika diperlukan, tambahkan catatan atau foto bukti.
+	3. Simpan perubahan; penerima/pelanggan dan admin akan melihat update status.
+- Verifikasi Selesai:
+	1. Setelah barang diantar, unggah bukti (foto tanda terima atau tanda tangan) pada formulir verifikasi.
+	2. Klik "Konfirmasi Selesai".
+
+Tips Operasional:
+- Pastikan koneksi internet sebelum mengubah status.
+- Unggah foto bukti yang jelas untuk menghindari sengketa.
+- Catat alasan jika pengiriman gagal dan lakukan komunikas pada pelanggan.
+
+Troubleshooting Umum:
+- Tidak bisa terima tugas: periksa jaringan dan pastikan akun kurir telah diaktifkan.
+- Upload bukti gagal: periksa format file dan batas ukuran.
+
+Kontak Darurat:
+- Hubungi admin operasi jika terjadi masalah pada rute atau klaim pelanggan.
+

@@ -1,6 +1,6 @@
 <?php
 // proses saat admin men-submit form tambah barang
-require_once "../../config/database.php";
+require_once __DIR__ . "/../../config/database.php";
 
 // ambil dan bersihkan input sederhana
 $nama = mysqli_real_escape_string($koneksi, $_POST['nama_barang']);
